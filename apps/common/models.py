@@ -1,24 +1,15 @@
+import uuid
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
 class User(AbstractUser):
-    ROLE_ADMIN = "admin"
-    ROLE_BUYER = "buyer"
-    ROLE_SUPPLIER = "supplier"
+    """
+    Base custom user model
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    ROLE_CHOICES = (
-        (ROLE_ADMIN, "Admin"),
-        (ROLE_BUYER, "Buyer"),
-        (ROLE_SUPPLIER, "Supplier"),
-    )
-
-    username = None
-    email = models.EmailField(unique=True)
-    role = models.CharField(max_length=20, choices=ROLE_CHOICES)
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
-
-    def __str__(self):
-        return f"{self.email} ({self.role})"
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"

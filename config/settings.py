@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
 
-    "apps.common",
+    "apps.common.apps.CommonConfig",
+    "apps.audit.apps.AuditConfig",
 ]
 
 AUTH_USER_MODEL = "common.User"

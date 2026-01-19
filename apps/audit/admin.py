@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import AuditLog
 
 
@@ -12,18 +11,6 @@ class AuditLogAdmin(admin.ModelAdmin):
         "object_id",
         "user",
     )
-
-    list_filter = ("action", "object_type", "created_at")
-    search_fields = ("action", "object_type", "object_id", "message")
-
+    list_filter = ("action", "object_type")
+    search_fields = ("object_id", "message")
     ordering = ("-created_at",)
-
-    readonly_fields = (
-        "id",
-        "user",
-        "action",
-        "object_type",
-        "object_id",
-        "message",
-        "created_at",
-    )
